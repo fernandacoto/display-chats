@@ -23,11 +23,3 @@ export const sortChatListBySentAt = (order, messageList) => {
   }
   return newMessageList;
 };
-
-export const itemsHaveChanged = (upcoming, current) => {
-  const diffLengths = upcoming.length !== current.length;
-  const result = upcoming.map((e, i) => {
-    return e == current[i];
-  });
-  return diffLengths || result.includes(false);
-};

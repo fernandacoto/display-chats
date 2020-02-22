@@ -6,28 +6,14 @@ import Header from "./Header";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { itemsHaveChanged } from "../utils";
 class MessageList extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      items: this.props.pageItems,
-      hasMore: this.props.moreChats
-    };
-  }
-
-  shouldComponentUpdate(nextProps, _) {
-    if (itemsHaveChanged(nextProps.pageItems, this.state.items)) {
-      this.setState({
-        items: nextProps.pageItems,
-        hasMore: nextProps.moreChats
-      });
-      return true;
-    }
-    return false;
-  }
-
   render() {
-    const { sortChats, deleteChat, handleFetchMore } = this.props;
-    const { items, hasMore } = this.state;
+    const {
+      sortChats,
+      deleteChat,
+      handleFetchMore,
+      moreChats,
+      pageItems
+    } = this.props;
     return (
       <div className="main-container">
         <Header />
@@ -41,14 +27,14 @@ class MessageList extends Component {
         </div>
         <div className="chat-box">
           <InfiniteScroll
-            dataLength={items.length}
+            dataLength={pageItems.length}
             next={handleFetchMore}
-            hasMore={hasMore}
+            hasMore={moreChats}
             loader={<Loading />}
             height={400}
             endMessage={<NoMoreChats />}
           >
-            {items.map((chat, index) => (
+            {pageItems.map((chat, index) => (
               <ChatMessage
                 key={index}
                 chat={chat}
