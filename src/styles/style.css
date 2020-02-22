@@ -1,0 +1,32 @@
+h1,
+p {
+  font-family: Lato;
+}
+.center-element {
+  text-align: center;
+}
+
+.sort-button {
+  margin-left: 85%;
+}
+
+.chat-box {
+  border-style: double;
+  border-color: #6794df;
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.user-icon {
+  width: 30px;
+  margin-right: 10px;
+}
+
+.main-container {
+  width: 50%;
+  margin: 100px auto 0px auto;
+}
+
+.lead {
+  font-size: 15px !important;
+}
