@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import ChatMessage from "./ChatMessage";
 import Loading from "./Loading";
 import NoMoreChats from "./NoMoreChats";
+import Header from "./Header";
 import InfiniteScroll from "react-infinite-scroll-component";
-
+import { itemsHaveChanged } from "../utils";
 class MessageList extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +15,7 @@ class MessageList extends Component {
   }
 
   shouldComponentUpdate(nextProps, _) {
-    if (nextProps.pageItems !== this.state.items) {
+    if (itemsHaveChanged(nextProps.pageItems, this.state.items)) {
       this.setState({
         items: nextProps.pageItems,
         hasMore: nextProps.moreChats
@@ -29,6 +30,7 @@ class MessageList extends Component {
     const { items, hasMore } = this.state;
     return (
       <div className="main-container">
+        <Header />
         <div className="button-container">
           <button
             onClick={sortChats}
@@ -46,7 +48,6 @@ class MessageList extends Component {
             height={400}
             endMessage={<NoMoreChats />}
           >
-            >
             {items.map((chat, index) => (
               <ChatMessage
                 key={index}
