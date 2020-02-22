@@ -23,7 +23,7 @@ class App extends Component {
   }
 
   handleSort = () => {
-    const { order, uniqueChatList } = this.state;
+    const { order, uniqueChatList, endAtPosition } = this.state;
     const newOrder = order === "asc" ? "desc" : "asc";
     const newOrderedUniqueChatList = sortChatListBySentAt(
       newOrder,
@@ -32,7 +32,7 @@ class App extends Component {
     this.setState({
       order: newOrder,
       uniqueChatList: newOrderedUniqueChatList,
-      pageItems: newOrderedUniqueChatList.slice(0, this.state.endAtPosition)
+      pageItems: newOrderedUniqueChatList.slice(0, endAtPosition)
     });
   };
 
@@ -68,7 +68,6 @@ class App extends Component {
   render() {
     return (
       <MessageList
-        uniqueChatList={this.state.uniqueChatList}
         sortChats={this.handleSort}
         deleteChat={this.handleDelete}
         pageItems={this.state.pageItems}

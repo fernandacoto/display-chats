@@ -26,7 +26,7 @@ class MessageList extends Component {
   }
 
   render() {
-    const { sortChats, deleteChat } = this.props;
+    const { sortChats, deleteChat, handleFetchMore } = this.props;
     const { items, hasMore } = this.state;
     return (
       <div className="main-container">
@@ -42,7 +42,7 @@ class MessageList extends Component {
         <div className="chat-box">
           <InfiniteScroll
             dataLength={items.length}
-            next={this.props.handleFetchMore}
+            next={handleFetchMore}
             hasMore={hasMore}
             loader={<Loading />}
             height={400}
