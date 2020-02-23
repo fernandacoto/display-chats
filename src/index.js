@@ -66,6 +66,10 @@ class App extends Component {
   };
 
   render() {
+    console.log("UNIQ");
+    console.log(this.state.uniqueChatList);
+    console.log("pageItems");
+    console.log(this.state.pageItems);
     return (
       <MessageList
         sortChats={this.handleSort}
